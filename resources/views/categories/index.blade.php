@@ -7,6 +7,9 @@
         <a class="px-4 py-2 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg hover:bg-purple-700 focus:outline-none focus:ring active:bg-purple-600" href="{{ route('categories.create') }}">
             {{ __('Create') }}
         </a>
+        <!-- <a class="px-4 py-2 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg hover:bg-purple-700 focus:outline-none focus:ring active:bg-purple-600" href="{{ route('createSubcategory.create') }}">
+            {{ __('Sub Create') }}
+        </a> -->
     </div>
 
     <div class="p-4 bg-white rounded-lg shadow-xs">

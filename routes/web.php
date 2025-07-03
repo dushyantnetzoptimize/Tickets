@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('categories', CategoryController::class)->middleware('role:admin');
         Route::resource('labels', LabelController::class)->middleware('role:admin');
+        Route::get('/subcategories/create', [CategoryController::class, 'createSubcategory'])->name('subcategories.create');
+        Route::post('/subcategories', [CategoryController::class, 'storeSubcategory'])->name('subcategories.store');
     });
 
     Route::post('messages/{ticket}', [MessageController::class, 'store'])->name('message.store');

@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create($tableName, function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug');
             $table->boolean('is_visible')->default(true);
+            $table->foreignId('parent_id')->nullable()->constrained('categories')->nullOnDelete();
             $table->timestamps();
         });
     }
