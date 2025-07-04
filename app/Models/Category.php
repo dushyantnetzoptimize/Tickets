@@ -11,15 +11,6 @@ class Category extends TicketCategory
         'is_visible' => 'boolean',
     ];
 
-    protected $fillable = ['name', 'is_visible', 'parent_id'];
-
-    public function parent() {
-        return $this->belongsTo(Category::class, 'parent_id');
-    }
-    public function children() {
-        return $this->hasMany(Category::class, 'parent_id');
-    }
-
     public static function boot()
     {
         parent::boot();
@@ -27,5 +18,15 @@ class Category extends TicketCategory
         static::saving(function (Category $category) {
             $category->slug = Str::slug($category->name);
         });
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
     }
 }

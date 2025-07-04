@@ -15,8 +15,10 @@ return new class extends Migration
         Schema::create($tableName, function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug');
             $table->boolean('is_visible')->default(true);
-            $table->foreignId('parent_id')->nullable()->constrained('categories')->nullOnDelete();
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -63,16 +63,10 @@
                         {{ __('Categories') }}
                     </x-nav-link>
                 </li>
-                <!-- <li class="relative px-6 py-3">
-                    <x-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('subcategories.*')">
-                        <x-slot name="icon">
-                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                            </svg>
-                        </x-slot>
-                        {{ __('subcategories') }}
-                    </x-nav-link>
-                </li>     -->
+                <li class="relative px-6 py-3">
+                    <a href="{{ route('categories.subcategories', $someCategoryId) }}">Categories</a>
+                </li>
+
                 <li class="relative px-6 py-3">
                     <x-nav-link href="{{ route('labels.index') }}" :active="request()->routeIs('labels.*')">
                         <x-slot name="icon">

@@ -9,8 +9,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::paginate();
-
+        $categories = Category::orderByDesc('id')->paginate(10);
         return view('categories.index', compact('categories'));
     }
 
@@ -26,7 +25,11 @@ class CategoryController extends Controller
         return to_route('categories.index');
     }
 
-    public function show(Category $category) {}
+  public function show($id)
+{
+    $category = Category::with('children')->findOrFail($id);
+    return view('categories.single', compact('category'));
+}
 
     public function edit(Category $category)
     {
@@ -45,29 +48,5 @@ class CategoryController extends Controller
         $category->delete();
 
         return to_route('categories.index');
-    }
-
-    public function createSubcategory()
-    {
-        // Only main categories (no parent) can be selected as parent
-        $mainCategories = Category::whereNull('parent_id')->get();
-        return view('categories.create_subcategory', compact('mainCategories'));
-    }
-
-    public function storeSubcategory(\Illuminate\Http\Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'is_visible' => 'boolean',
-            'parent_id' => 'required|exists:categories,id',
-        ]);
-
-        Category::create([
-            'name' => $request->name,
-            'is_visible' => $request->is_visible ?? false,
-            'parent_id' => $request->parent_id,
-        ]);
-
-        return redirect()->route('categories.index');
     }
 }
