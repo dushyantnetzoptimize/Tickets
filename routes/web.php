@@ -43,5 +43,3 @@ Route::middleware('auth')->group(function () {
 
     Route::get('download/attachment/{mediaItem}', DownloadAttachmentController::class)->name('attachment-download');
 });
-Route::get('/categories/{id}/subcategories', [CategoryController::class, 'subcategories'])->name('categories.subcategories');
-Route::post('/categories/{id}/subcategories', [CategoryController::class, 'storeSubcategory'])->name('categories.storeSubcategory');

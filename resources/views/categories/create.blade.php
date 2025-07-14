@@ -18,7 +18,18 @@
                               required />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
-
+            <div class="mt-4">
+                <x-input-label for="parent_id" :value="__('Parent Category (optional)')" />
+                <select name="parent_id" id="parent_id" class="block w-full border-gray-300 rounded-md shadow-sm">
+                    <option value="">No Parent</option>
+                    @foreach($categories as $cat)
+                        <option value="{{ $cat->id }}" {{ old('parent_id') == $cat->id ? 'selected' : '' }}>
+                            {{ $cat->name }}
+                        </option>
+                    @endforeach
+                </select>
+                <x-input-error :messages="$errors->get('parent_id')" class="mt-2" />
+            </div>
             <div class="mt-4">
                 <div class="mt-1 inline-flex space-x-1">
                     <input class="text-purple-600 form-checkbox focus:shadow-outline-purple focus:border-purple-400 focus:outline-none"

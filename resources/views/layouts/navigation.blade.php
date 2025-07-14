@@ -63,9 +63,7 @@
                         {{ __('Categories') }}
                     </x-nav-link>
                 </li>
-                <li class="relative px-6 py-3">
-                    <a href="{{ route('categories.subcategories', $someCategoryId) }}">Categories</a>
-                </li>
+               
 
                 <li class="relative px-6 py-3">
                     <x-nav-link href="{{ route('labels.index') }}" :active="request()->routeIs('labels.*')">

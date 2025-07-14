@@ -17,6 +17,7 @@
                     <thead>
                         <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b bg-gray-50">
                             <th class="px-4 py-3">Name</th>
+                            <th class="px-4 py-3">Parent Category</th>
                             <th class="px-4 py-3">Slug</th>
                             <th class="px-4 py-3">Is visible</th>
                             <th></th>
@@ -29,9 +30,10 @@
                                     {{ $category->name }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    @foreach($category->children as $sub)
-                                        <span>{{ $sub->name }}</span>
-                                    @endforeach
+                                    {{ $category->parent ? $category->parent->name : '-' }}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    {{ $category->slug }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{ $category->is_visible ? 'Yes' : 'No' }}
@@ -40,7 +42,6 @@
                                     <a class="px-4 py-2 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border-2 border-transparent rounded-lg hover:bg-purple-700 focus:outline-none focus:ring active:bg-purple-600" href="{{ route('categories.edit', $category) }}">
                                         {{ __('Edit') }}
                                     </a>
-
                                     <form action="{{ route('categories.destroy', $category) }}" method="POST" onsubmit="return confirm('Are you sure?')" style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')
